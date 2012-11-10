@@ -5,15 +5,39 @@ class Home extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('welcome_message');
-	}
+		$this->load->library('user_agent');
+		$this->load->helper(array('form', 'url'));
 
-	public function test()
-	{
-		$this->load->model('sms_model');
-		$message = $this->sms_model->send_text($this->input->post('phone'), $this->input->post('message'));
-		print_r($message);
-		echo "ya";
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('phone', 'add_number', 'required');			
+		$this->form_validation->set_rules('area', 'add_area', 'required');			
+		$this->form_validation->set_rules('age', 'age', '');			
+		$this->form_validation->set_rules('gender', 'gender', '');			
+		$this->form_validation->set_rules('question', 'question', 'required');
+		
+		$this->form_validation->set_error_delimiters('<br /><span class="error">', '</span>');
+
+		if ($this->form_validation->run() == FALSE) // first load or invalid
+		{
+			if ($this->agent->is_mobile())
+			{
+				$this->load->view('mobile');
+			}
+			else
+			{
+				$this->load->view('desktop');
+			}
+		}
+		else // 
+		{
+			$this->load->model('sms_model');
+			$this->sms_model->register_number(set_value('add_area'), set_value('add_number'), set_value('age'), set_value('gender'), set_value('myquestion'))
+			//$message = $this->sms_model->send_text($this->input->post('phone'), $this->input->post('message'));
+			//print_r($message);
+			$this->load->view('desktop');
+			}
+		}
 	}
 }
 
