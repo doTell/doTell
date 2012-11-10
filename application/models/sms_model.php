@@ -48,7 +48,7 @@ class Sms_model extends CI_Model {
 				$this->where('phone !=', $phone);
 				$this->from('users');
 				$u = $this->db->get();
-				send_text($phone, $text);
+				send_text($u->row()->phone, $text);
 				$new = array(
 					'question_id' => $qid,
 					'ask_id' => $uid,
@@ -74,16 +74,29 @@ class Sms_model extends CI_Model {
 				'phone' => $number . $area,
 				'area_code' => $area,
 				'age' => $age,
-				'gender' => $gender,
+				'gender' => $gender
 			);
 		$this->db->insert('users', $user);
+		$uid = $this->db->insert_id();
 		$question = array(
-			'user_id' => $this->db->insert_id(),
+			'user_id' => $uid,
 			'question' => $question
 		);
 		$this->db->insert('questions', $question);
 		$phone_number = $area . $number;
 		$this->curl->simple_post('https://secure.mcommons.com/profiles/join', array('opt_in_path[]'=>'134401', 'person[phone]' => $phone_number), array(CURLOPT_BUFFERSIZE => 10));
+		$qid = $this->db->insert_id();
+		//get random number
+		$this->where('phone !=', $number);
+		$this->from('users');
+		$u = $this->db->get();
+		send_text($u->row()->phone, $text);
+		$new = array(
+			'question_id' => $qid,
+			'ask_id' => $uid,
+			'answer_id' => $u->row()->id
+			);
+		$this->db->insert('sent_texts', $new);
 	}
 
 	public function send_text($phone, $text)
