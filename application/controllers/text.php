@@ -6,8 +6,8 @@ class Text extends CI_Controller {
 	{
 		$this->load->model('sms_model');
 		$args = $this->input->post('args');
-		$phone = $this->input->post('phone');
-		$this->sms_model->post_text($args, $phone);
+		$phone = $this->input->post('phone_number_without_country_code');
+		$this->sms_model->process_text($args, $phone);
 	}
 }
 
