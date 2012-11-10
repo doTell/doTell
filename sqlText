@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 10, 2012 at 12:49 PM
+-- Generation Time: Nov 10, 2012 at 02:34 PM
 -- Server version: 5.5.9
 -- PHP Version: 5.3.6
 
@@ -51,6 +51,26 @@ CREATE TABLE `questions` (
 
 --
 -- Dumping data for table `questions`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sent_texts`
+--
+
+CREATE TABLE `sent_texts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `question_id` int(11) NOT NULL,
+  `ask_id` int(11) NOT NULL,
+  `answer_id` int(11) NOT NULL,
+  `closed` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `sent_texts`
 --
 
 
