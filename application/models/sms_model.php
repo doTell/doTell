@@ -48,8 +48,18 @@ class User_model extends CI_Model {
 	{
 		$user = array(
 				'phone' => $number,
-				'area' =>
+				'area' => $area,
+				'age' => $age,
+				'gender' => $gender,
 			);
+		$this->db->insert('users', $user);
+		$question = array(
+			'user_id' => $this->db->insert_id(),
+			'question' => $question
+		);
+		$this->db->insert('questions', $question);
+		$phone_number = $area . $number;
+		$this->curl->simple_post('https://secure.mcommons.com/profiles/join', array('opt_in_path[]'=>'134401', 'person[phone]' => $phone_number), array(CURLOPT_BUFFERSIZE => 10));
 	}
 
 	public function send_text($phone, $text)
