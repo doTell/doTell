@@ -62,7 +62,7 @@ header {
         $logo-width: 108px;
         position: relative;
         margin-left: $std-spacing * 4;
-        padding-left: $logo-width + ($std-spacing / 2);
+        padding-left: $logo-width + ($std-spacing * 0.25);
         color: $highlight-color;
      
         img.logo {
@@ -74,11 +74,12 @@ header {
         }   
         
         div.site-name {
-            position: relative;
-            top: 3px;
-            letter-spacing: 1px;
-            font-weight: normal;
-            font-size: $std-font-size * 1.75;
+            
+            img {
+                position: relative;
+                top: 3px;
+                height: 28px;
+            }
         }
     }
     
@@ -109,6 +110,17 @@ header {
         /* These styles override mobile-specific styles in global.css */
         width: 320px;
         background: rgba(51, 49, 49, 0.925);
+        
+        form.form-container {
+            
+            p:first-child {
+                margin-bottom: 5px;
+            }
+        }
+        
+        .form-field {
+            margin-bottom: 15px;
+        }
         
         input[type="text"], input[type="email"], input[type="tel"], textarea {
             width: 93.5%;
