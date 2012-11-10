@@ -1,6 +1,6 @@
 <?php if( ! defined('BASEPATH') ) exit('No direct script access allowed');
 
-class User_model extends CI_Model {
+class Sms_model extends CI_Model {
 
 	public function process_text($phone, $text)
 	{
@@ -39,7 +39,7 @@ class User_model extends CI_Model {
 	{
 		$text = array(
 			'asker_id' => $user_id,
-			'question_id', => $qid
+			'question_id' => $qid
 			);
 		$this->db->insert('sent_texts', $text);
 	}
@@ -48,7 +48,7 @@ class User_model extends CI_Model {
 	{
 		$user = array(
 				'phone' => $number,
-				'area' => $area,
+				'area_code' => $area,
 				'age' => $age,
 				'gender' => $gender,
 			);
@@ -64,7 +64,20 @@ class User_model extends CI_Model {
 
 	public function send_text($phone, $text)
 	{
+// Start session (also wipes existing/previous sessions)
+$this->curl->create('https://secure.mcommons.com/api/send_message');
+// More human looking options
+$this->curl->option('buffersize', 10);
 
+// Login to HTTP user authentication
+$this->curl->http_login('keepevets@gmail.com', 'dotelldotell');
+
+// Post - If you do not use post, it will just run a GET request
+$post = array('campaign_id'=>'103711', 'phone_number' => $phone, 'body' => $text);
+$this->curl->post($post);
+
+// Execute - returns responce
+return $this->curl->execute();
 	}
 
 }
