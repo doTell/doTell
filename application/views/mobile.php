@@ -75,8 +75,8 @@ $attributes = array('class' => 'form-container', 'id' => '');
 echo form_open('CI_Controller', $attributes); ?>
 	<div class="form-title"><h2></h2></div>
 	<p>Do Tell is an experiment that sparks multimedia exchanges amongst teens.</p>
-			<input class="form-field-area" type="tel" name="add_area" placeholder="XXX" maxlength="3"/><?php echo set_value('area'); ?></input>
-			<input class="form-field-number" type="tel" name="add_number" placeholder="XXX-XXXX" maxlength="7"/><?php echo set_value('phone'); ?></input><br />
+			<input class="form-field-area" type="tel" name="area" placeholder="XXX" maxlength="3"/><?php echo set_value('area'); ?></input>
+			<input class="form-field-number" type="tel" name="phone" placeholder="XXX-XXXX" maxlength="7"/><?php echo set_value('phone'); ?></input><br />
 			<input class="form-field" type="tel" name="age" maxlength="2" placeholder="Age" value="<?php echo set_value('age'); ?>"/><br />
 			 <input class="form-field-radio" type="radio" name="gender" value="guy" <?php if(strcasecmp(set_value('gender'), "guy")==0) { echo "checked=\"checked\"" } ?>/></input> Guy
 			 <input class="form-field-radio" type="radio" name="gender" value="girl" <?php if(strcasecmp(set_value('gender'), "girl")==0) { echo "checked=\"checked\"" } ?>/></input> Girl

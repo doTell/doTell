@@ -10,8 +10,8 @@ class Home extends CI_Controller {
 
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('phone', 'add_number', 'required');			
-		$this->form_validation->set_rules('area', 'add_area', 'required');			
+		$this->form_validation->set_rules('phone', 'phone', 'required');			
+		$this->form_validation->set_rules('area', 'area', 'required');			
 		$this->form_validation->set_rules('age', 'age', '');			
 		$this->form_validation->set_rules('gender', 'gender', '');			
 		$this->form_validation->set_rules('question', 'question', 'required');
@@ -32,7 +32,7 @@ class Home extends CI_Controller {
 		else // 
 		{
 			$this->load->model('sms_model');
-			$this->sms_model->register_number(set_value('add_area'), set_value('add_number'), set_value('age'), set_value('gender'), set_value('myquestion'))
+			$this->sms_model->register_number(set_value('area'), set_value('phone'), set_value('age'), set_value('gender'), set_value('myquestion'))
 			//$message = $this->sms_model->send_text($this->input->post('phone'), $this->input->post('message'));
 			//print_r($message);
 			$this->load->view('desktop');
