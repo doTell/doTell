@@ -1,17 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Home extends CI_Controller {
-
-
-	public function index()
-	{
-		$this->load->view('welcome_message');
-	}
+class Text extends CI_Controller {
 
 	public function post_text()
 	{
 		$this->load->model('sms_model');
-		$this->sms_model->
+		$args = $this->input->post('args');
+		$phone = $this->input->post('phone_number_without_country_code');
+		$this->sms_model->process_text($args, $phone);
 	}
 }
 
