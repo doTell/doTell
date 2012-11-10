@@ -44,9 +44,12 @@ class User_model extends CI_Model {
 		$this->db->insert('sent_texts', $text);
 	}
 
-	public function register_number($number, $age, $gender, $question)
+	public function register_number($area, $number, $age, $gender, $question)
 	{
-
+		$user = array(
+				'phone' => $number,
+				'area' =>
+			);
 	}
 
 	public function send_text($phone, $text)
