@@ -61,27 +61,12 @@
 </head>
 
 
-<<<<<<< HEAD
-	<div id="body">
-<p>
-<form method="post" action="test">
-	phone<input type="text" name="phone">
-	message<input type="text" name="message">
-
-	<input type="submit" value="submit">
-</form>
-
-</p>
-
-	</div>
-=======
 
 <body>
 
 <div class="container">
 
-	<center><h1><span style="color:#FED100">Do Tell!</span></h1></center>
->>>>>>> Welcome view with Ryan's code
+	<div><img src ="images/logo_mobile.png"/></div>
 
 <!--THE FORM-->
 <?php // Change the css classes to suit your needs    
@@ -90,13 +75,14 @@ $attributes = array('class' => 'form-container', 'id' => '');
 echo form_open('CI_Controller', $attributes); ?>
 	<div class="form-title"><h2></h2></div>
 	<p>Do Tell is an experiment that sparks multimedia exchanges amongst teens.</p>
-			<input class="form-field" type="tel" name="add_number" placeholder="Phone Number" maxlength="11"/><?php echo set_value('phone'); ?></input><br />
+			<input class="form-field-area" type="tel" name="area" placeholder="XXX" maxlength="3"/><?php echo set_value('area'); ?></input>
+			<input class="form-field-number" type="tel" name="phone" placeholder="XXX-XXXX" maxlength="7"/><?php echo set_value('phone'); ?></input><br />
 			<input class="form-field" type="tel" name="age" maxlength="2" placeholder="Age" value="<?php echo set_value('age'); ?>"/><br />
-			 <input class="form-field-radio" type="radio" name="gender" value="guy" <?php if(strcasecmp(set_value('gender'), guy)==0) { echo "checked=\"checked\"" } ?></input> Guy
-			 <input class="form-field-radio" type="radio" name="gender" value="girl" <?php if(strcasecmp(set_value('gender'), girl)==0) { echo "checked=\"checked\"" } ?>/></input> Girl
+			 <input class="form-field-radio" type="radio" name="gender" value="guy" <?php if(strcasecmp(set_value('gender'), "guy")==0) { echo "checked=\"checked\"" } ?>/></input> Guy
+			 <input class="form-field-radio" type="radio" name="gender" value="girl" <?php if(strcasecmp(set_value('gender'), "girl")==0) { echo "checked=\"checked\"" } ?>/></input> Girl
 				<div>Can you send me a photo of...</div>
 				<div id="questioncontainer" style="height:40px;"></div>
-			 <textarea class="form-field-text" id="myquestion" cols="40" rows="8" type="text" name="add_number" placeholder="Ask someone anything you can think of... You will receive a text with a photo and caption answering your question. It's really awesome." maxlength="160"><?php echo set_value('question'); ?></textarea>
+			 <textarea class="form-field-text" id="myquestion" cols="40" rows="8" type="text" name="question" placeholder="Ask someone anything you can think of... You will receive a text with a photo and caption answering your question. It's really awesome." maxlength="160"><?php echo set_value('question'); ?></textarea>
 			 
 			<input class="submit-button" type="submit" value="Ask Someone" /></input>
 		</div>
